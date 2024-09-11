@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read and write access to `parents` collection only if authenticated.
+    match /parents/{parentId} {
+      allow read, write: if request.auth != null;
+
+      // Allow read and write access to `children` subcollection
+      match /children/{childId} {
+        allow read, write,update: if request.auth != null;
+      }
+      
+      // Allow creating documents in the `markedPlaces` subcollection
+      match /markedPlaces/{placeId} {
+        allow read, write: if request.auth != null && request.auth.uid == parentId;
+      }
+    }
+
+    // Allow read and write access to `users` collection only if authenticated.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // Allow access to `devices` subcollection
+      match /devices/{deviceId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // Allow read and write access to `feedback` collection if authenticated.
+    match /feedback/{feedbackId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Allow read and write access to `pairingCodes` collection if authenticated.
+    match /pairingCodes/{code} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Restrict access to any other collections or documents not specified
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

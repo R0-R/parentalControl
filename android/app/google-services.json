@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "416000587844",
+    "project_id": "parentalcontrol-5db2a",
+    "storage_bucket": "parentalcontrol-5db2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416000587844:android:f654c40c9f58d3ca98a411",
+        "android_client_info": {
+          "package_name": "com.example.parental_control"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1q_Y2QybLPwV77DixidO5Npny-IOspsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
